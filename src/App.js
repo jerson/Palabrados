@@ -83,7 +83,7 @@ class App extends Component {
     restart() {
         this.setPhrase(this.state.phrase, {
             showSpecials: this.state.showSpecials,
-            useSpaces: this.state.useSpaces,
+            skipSpaces: this.state.skipSpaces,
         });
     }
 
