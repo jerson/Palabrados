@@ -9,6 +9,7 @@ class App extends Component {
 
     state = {
         phrase: '',
+        useSpaces: false,
         keys: [],
         total: 0,
         totalOk: 0,
@@ -18,10 +19,9 @@ class App extends Component {
     componentDidMount() {
     }
 
-    onNewGame(phrase) {
-        this.setPhrase(phrase)
+    onNewGame(phrase, useSpaces: bool = false) {
+        this.setPhrase(phrase, useSpaces)
     }
-
 
     replaceAcents(str: string): string {
 
@@ -46,7 +46,7 @@ class App extends Component {
 
     }
 
-    setPhrase(phrase: string) {
+    setPhrase(phrase: string, useSpaces: bool) {
 
         let keys = phrase.split('').map((key, index) => {
             return {
@@ -57,7 +57,9 @@ class App extends Component {
             }
         });
 
-        this.setState({keys, phrase})
+        this.setState({keys, phrase, useSpaces},()=>{
+            this.restart();
+        })
 
     }
 
@@ -87,7 +89,7 @@ class App extends Component {
     send(e) {
         e.preventDefault();
         let inputKey = ReactDOM.findDOMNode(this.refs.key);
-        let value = inputKey.value.trim().toLocaleLowerCase();
+        let value = inputKey.value.toLocaleLowerCase();
         value = value.length > 0 ? value[0] : '';
 
         if (!value) {
@@ -131,7 +133,7 @@ class App extends Component {
 
     render() {
 
-        let {keys, phrase} = this.state;
+        let {keys, phrase, useSpaces} = this.state;
         let number = 0;
 
         if (!phrase) {
@@ -145,19 +147,19 @@ class App extends Component {
 
                     {keys.map((key, index) => {
 
-                        if (key.key !== ' ') {
+                        if (key.key !== ' ' || useSpaces) {
                             number++;
                         }
 
                         let className = 'Key ' + (key.status === 'ok' ? 'Active' : '');
                         return (
                             <div key={index} className="KeyContainer">
-                                {key.key === ' ' &&
+                                {key.key === ' ' && !useSpaces &&
                                 <div className="Key">
                                     <div className="KeySpace"></div>
                                 </div>
                                 }
-                                {key.key !== ' ' &&
+                                {(key.key !== ' ' || useSpaces) &&
                                 <div className={className}>
                                     <div className="KeyFront">{number}</div>
                                     <div className="KeyBack">{key.key}</div>
@@ -192,7 +194,7 @@ class App extends Component {
 
                         <button type="button" onClick={this.restart.bind(this)}>Reiniciar</button>
                         <button type="button" onClick={this.showAll.bind(this)}>Mostrar</button>
-                        <button type="button" onClick={this.onNewGame.bind(this,'')}>Nuevo</button>
+                        <button type="button" onClick={this.onNewGame.bind(this,'',false)}>Nuevo</button>
 
                     </div>
                 </div>

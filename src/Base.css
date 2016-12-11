@@ -5,7 +5,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
@@ -14,13 +14,13 @@
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: rgba(255,0,0,0.8);
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
-::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255,0,0,0.4);
+    background: rgba(255, 0, 0, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+}
 
 #root {
 
@@ -36,7 +36,7 @@ body {
     background-repeat: no-repeat;
 }
 
-input,textarea {
+input, textarea {
 
     background-color: rgba(244, 244, 244, 0.56);
     padding: 20px;
@@ -63,4 +63,74 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+label {
+    font-size: 24px;
+}
+
+.radioContainer {
+    clear: both;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* hide input */
+input.radio:empty {
+    margin-left: -9999px;
+}
+
+/* style label */
+input.radio:empty ~ label {
+    position: relative;
+    float: left;
+    line-height: 2.5em;
+    text-indent: 3.25em;
+    /*margin-top: 2em;*/
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input.radio ~ label:before {
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    margin: 6px;
+    margin-left: 10px;
+    border: 5px solid transparent;
+}
+
+input.radio:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background: #D1D3D4;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+    content: '';
+    text-indent: .9em;
+    border: 5px solid red;
+}
+
+input.radio:hover:not(:checked) ~ label {
+}
+
+/* toggle on */
+input.radio:checked ~ label:before {
+    content: '';
+    text-indent: .9em;
+    background-color: #4DCB6D;
+    border: 5px solid red;
+
+}
+
+input.radio:checked ~ label {
 }

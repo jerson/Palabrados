@@ -6,6 +6,15 @@ import './Animated.css'
 
 export default class Welcome extends Component {
 
+    state = {
+        useSpaces: false,
+    };
+
+    onChangeSpaces(e) {
+
+        this.setState({useSpaces:!this.state.useSpaces})
+    }
+
     componentDidMount() {
     }
 
@@ -19,7 +28,7 @@ export default class Welcome extends Component {
         }
 
         if (typeof this.props.onNewGame === 'function') {
-            this.props.onNewGame(value)
+            this.props.onNewGame(value, this.state.useSpaces)
         }
 
     }
@@ -33,6 +42,12 @@ export default class Welcome extends Component {
                 <div className="WelcomeContainer">
                     <form onSubmit={this.send.bind(this)}>
                         <textarea ref="phrase" rows={3}></textarea>
+
+                        <div className="radioContainer">
+                            <input value="on" type="checkbox" id="radio1" checked={this.state.useSpaces }
+                                   onChange={this.onChangeSpaces.bind(this)} className="radio"/>
+                            <label htmlFor="radio1">Usar espacios como opciones</label>
+                        </div>
 
                         <button type="submit">Iniciar Juego</button>
                     </form>

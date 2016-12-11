@@ -30,7 +30,7 @@
 
 
 .KeysContainer{
-    overflow: scroll;
+    overflow: auto;
     max-height: 90vh;
     overflow-x: hidden;;
 }
