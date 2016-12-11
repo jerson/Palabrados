@@ -18,6 +18,7 @@
 .SettingsContainer,
 .InputContainer,
 .KeysContainer,
+.SizeContainer,
 .WelcomeContainer{
 
     display: flex;
@@ -26,6 +27,14 @@
     padding: 10px;
     border-radius: 20px;
     margin-bottom: 10px;
+}
+
+.SizeContainer{
+    flex-direction: row;
+}
+
+.SizeContainer button{
+    flex: 1;
 }
 
 

@@ -1,26 +1,18 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import Checkbox from './Checkbox'
 import './Base.css'
 import './App.css'
 import './Animated.css'
 
 export default class Welcome extends Component {
 
-    state = {
-        useSpaces: false,
-    };
-
-    onChangeSpaces(e) {
-
-        this.setState({useSpaces:!this.state.useSpaces})
-    }
-
     componentDidMount() {
         this.focusInput();
 
     }
 
-    focusInput(){
+    focusInput() {
         ReactDOM.findDOMNode(this.refs.phrase).focus();
     }
 
@@ -34,7 +26,10 @@ export default class Welcome extends Component {
         }
 
         if (typeof this.props.onNewGame === 'function') {
-            this.props.onNewGame(value, this.state.useSpaces)
+            this.props.onNewGame(value, {
+                useSpaces: !this.refs.skipSpaces.getValue(),
+                showSpecials: this.refs.showSpecials.getValue()
+            })
         }
 
     }
@@ -49,11 +44,8 @@ export default class Welcome extends Component {
                     <form onSubmit={this.send.bind(this)}>
                         <textarea ref="phrase" rows={3}></textarea>
 
-                        <div className="radioContainer">
-                            <input value="on" type="checkbox" id="radio1" checked={this.state.useSpaces }
-                                   onChange={this.onChangeSpaces.bind(this)} className="radio"/>
-                            <label htmlFor="radio1">Usar espacios como opciones</label>
-                        </div>
+                        <Checkbox label={'Omitir espacios en blanco'} defaultValue={true} ref="skipSpaces"/>
+                        <Checkbox label={'Mostrar caracteres especiales'} defaultValue={true} ref="showSpecials"/>
 
                         <button type="submit">Iniciar Juego</button>
                     </form>

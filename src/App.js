@@ -10,18 +10,20 @@ class App extends Component {
     state = {
         phrase: '',
         useSpaces: false,
+        showSpecials: true,
         keys: [],
+        fontSize: 80,
         total: 0,
         totalOk: 0,
         totalError: 0,
     };
 
-    focusInput(){
-       ReactDOM.findDOMNode(this.refs.key).focus();
+    focusInput() {
+        this.refs.key && ReactDOM.findDOMNode(this.refs.key).focus();
     }
 
-    onNewGame(phrase, useSpaces: bool = false) {
-        this.setPhrase(phrase, useSpaces)
+    onNewGame(phrase: string, settings: any = {}) {
+        this.setPhrase(phrase, settings)
     }
 
     replaceAcents(str: string): string {
@@ -47,30 +49,43 @@ class App extends Component {
 
     }
 
-    setPhrase(phrase: string, useSpaces: bool) {
+    setPhrase(phrase: string, settings: any) {
 
         let keys = phrase.split('').map((key, index) => {
+
+            let status = 'pending';
+            let value = this.replaceAcents(key);
+
+            if (/[^a-zA-Z0-9\s]/.test(value) && settings.showSpecials) {
+                status = 'ok'
+            } else if (/[\s]/.test(value) && !settings.useSpaces) {
+                status = 'ok'
+            }
+
             return {
                 key,
-                value: this.replaceAcents(key),
+                value,
                 index,
-                status: 'pending'
+                status
             }
         });
 
-        this.setState({keys, phrase, useSpaces},()=>{
-            this.restart();
+        this.setState({keys, phrase, ...settings}, () => {
+            this.restartCounters();
         });
 
     }
 
     restart() {
-
-        let keys = this.state.keys.map((key, index) => {
-            key.status = 'pending';
-            return key;
+        this.setPhrase(this.state.phrase, {
+            showSpecials: this.state.showSpecials,
+            useSpaces: this.state.useSpaces,
         });
-        this.setState({keys, total: 0, totalOk: 0, totalError: 0},()=>{
+    }
+
+    restartCounters() {
+
+        this.setState({total: 0, totalOk: 0, totalError: 0}, () => {
             this.focusInput();
         });
 
@@ -129,23 +144,34 @@ class App extends Component {
             return key.status === 'pending'
         });
 
-
-        console.log(isMissingSome);
-
         let allOk = !isMissingSome;
         this.setState({allOk});
 
         if (allOk) {
             ReactDOM.findDOMNode(this.refs.newGame).focus();
-        }else{
+        } else {
             this.focusInput();
         }
 
     }
 
+    bigger() {
+        let {fontSize}  =this.state;
+        fontSize += 10;
+        this.setState({fontSize});
+    }
+
+    smaller() {
+
+        let {fontSize}  =this.state;
+        fontSize -= 10;
+        fontSize = fontSize < 20 ? 20 : fontSize;
+        this.setState({fontSize});
+    }
+
     render() {
 
-        let {keys, phrase, useSpaces} = this.state;
+        let {keys, phrase, fontSize} = this.state;
         let number = 0;
 
         if (!phrase) {
@@ -159,24 +185,18 @@ class App extends Component {
 
                     {keys.map((key, index) => {
 
-                        if (key.key !== ' ' || useSpaces) {
-                            number++;
-                        }
+                        number++;
 
                         let className = 'Key ' + (key.status === 'ok' ? 'Active' : '');
                         return (
-                            <div key={index} className="KeyContainer">
-                                {key.key === ' ' && !useSpaces &&
-                                <div className="Key">
-                                    <div className="KeySpace"></div>
-                                </div>
-                                }
-                                {(key.key !== ' ' || useSpaces) &&
+                            <div key={index} className="KeyContainer" style={{width:fontSize+15,height:fontSize+15,}}>
+
+
                                 <div className={className}>
-                                    <div className="KeyFront">{number}</div>
-                                    <div className="KeyBack">{key.key}</div>
+                                    <div className="KeyFront" style={{fontSize}}>{number}</div>
+                                    <div className="KeyBack" style={{fontSize}}>{key.key}</div>
                                 </div>
-                                }
+
                             </div>
                         )
 
@@ -200,6 +220,13 @@ class App extends Component {
                             <button type="submit">Enviar</button>
                         </form>
 
+
+                    </div>
+
+                    <div className="SizeContainer">
+
+                        <button type="button" onClick={this.bigger.bind(this)}>+</button>
+                        <button type="button" onClick={this.smaller.bind(this)}>-</button>
 
                     </div>
                     <div className="SettingsContainer">

@@ -50,10 +50,10 @@ input, textarea {
 }
 
 button {
-    padding: 15px;
+    padding: 10px;
     border-radius: 20px;
     border: 4px solid #333;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     margin-top: 5px;
 
