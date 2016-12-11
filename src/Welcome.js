@@ -16,6 +16,12 @@ export default class Welcome extends Component {
     }
 
     componentDidMount() {
+        this.focusInput();
+
+    }
+
+    focusInput(){
+        ReactDOM.findDOMNode(this.refs.phrase).focus();
     }
 
     send(e) {

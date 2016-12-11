@@ -16,7 +16,8 @@ class App extends Component {
         totalError: 0,
     };
 
-    componentDidMount() {
+    focusInput(){
+       ReactDOM.findDOMNode(this.refs.key).focus();
     }
 
     onNewGame(phrase, useSpaces: bool = false) {
@@ -59,7 +60,7 @@ class App extends Component {
 
         this.setState({keys, phrase, useSpaces},()=>{
             this.restart();
-        })
+        });
 
     }
 
@@ -69,7 +70,9 @@ class App extends Component {
             key.status = 'pending';
             return key;
         });
-        this.setState({keys, total: 0, totalOk: 0, totalError: 0});
+        this.setState({keys, total: 0, totalOk: 0, totalError: 0},()=>{
+            this.focusInput();
+        });
 
     }
 
@@ -122,12 +125,21 @@ class App extends Component {
     }
 
     checkIfAllIsOk() {
-        let isMissingSome = this.state.keys.map((key, index) => {
-            return key.status !== 'ok'
+        let isMissingSome = this.state.keys.some((key, index) => {
+            return key.status === 'pending'
         });
+
+
+        console.log(isMissingSome);
 
         let allOk = !isMissingSome;
         this.setState({allOk});
+
+        if (allOk) {
+            ReactDOM.findDOMNode(this.refs.newGame).focus();
+        }else{
+            this.focusInput();
+        }
 
     }
 
@@ -194,7 +206,7 @@ class App extends Component {
 
                         <button type="button" onClick={this.restart.bind(this)}>Reiniciar</button>
                         <button type="button" onClick={this.showAll.bind(this)}>Mostrar</button>
-                        <button type="button" onClick={this.onNewGame.bind(this,'',false)}>Nuevo</button>
+                        <button type="button" ref="newGame" onClick={this.onNewGame.bind(this,'',false)}>Nuevo</button>
 
                     </div>
                 </div>
