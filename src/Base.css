@@ -5,21 +5,20 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    /*-webkit-box-shadow:  0 0 6px rgba(0, 0, 0, 0.3);*/
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: rgba(255, 0, 0, 0.8);
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
+    /*-webkit-box-shadow:  0 2px 3px rgba(0, 0, 0, 0.5);*/
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 #root {
@@ -30,7 +29,8 @@
 
 body {
 
-    background-color: #276740;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, "Open Sans";
+    background-color: rgb(24, 140, 230);
     /*background: url('https://0.s3.envato.com/files/171533992/Jump_Game_Background_1024x512.jpg') ;*/
     background-size: cover;
     background-repeat: no-repeat;
@@ -38,25 +38,51 @@ body {
 
 input, textarea {
 
-    background-color: rgba(244, 244, 244, 0.56);
+    background-color: rgba(0, 0, 0, 0.04);
     padding: 20px;
     border-radius: 20px;
-    border: 4px solid #333;
+    border: 4px solid rgba(0, 0, 0, 0.3);
     font-size: 80px;
     text-align: center;
+    color: #fff;
     text-transform: uppercase;
     font-weight: bold;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+textarea {
+
+    font-size: 40px;
+    text-transform: none;
 
 }
 
 button {
     padding: 10px;
     border-radius: 20px;
-    border: 4px solid #333;
-    font-size: 30px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    font-size: 24px;
     font-weight: bold;
     margin-top: 5px;
+    background: linear-gradient(#fff, #f4f4f4);
+    text-transform: uppercase;
+    text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    color: #444;
+}
 
+button:hover{
+
+    animation-name: rubberBand;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
 }
 
 form {
@@ -66,13 +92,17 @@ form {
 }
 
 label {
-    font-size: 24px;
+    font-size: 20px;
+    color: #fff;
+    text-transform: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .radioContainer {
     clear: both;
     margin-bottom: 10px;
     margin-top: 10px;
+    width: 350px;
 }
 
 /* hide input */
@@ -96,11 +126,12 @@ input.radio:empty ~ label {
 
 input.radio ~ label:before {
     border-radius: 40px;
-    height: 40px;
-    width: 40px;
-    margin: 6px;
-    margin-left: 10px;
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+    margin-left: 25px;
     border: 5px solid transparent;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 input.radio:empty ~ label:before {
@@ -110,14 +141,15 @@ input.radio:empty ~ label:before {
     bottom: 0;
     left: 0;
     content: '';
-    background: #D1D3D4;
+    background: #fff;
+    border-color: rgba(226, 224, 217, 0.9);
+
 }
 
 /* toggle hover */
 input.radio:hover:not(:checked) ~ label:before {
     content: '';
     text-indent: .9em;
-    border: 5px solid red;
 }
 
 input.radio:hover:not(:checked) ~ label {
@@ -127,8 +159,8 @@ input.radio:hover:not(:checked) ~ label {
 input.radio:checked ~ label:before {
     content: '';
     text-indent: .9em;
-    background-color: #4DCB6D;
-    border: 5px solid red;
+    background: linear-gradient(#4f7f0c, #2f4c07);
+    border-color: #8ce215;
 
 }
 

@@ -194,17 +194,30 @@ class App extends Component {
 
                     {keys.map((key, index) => {
 
-                        number++;
+                        let isAlphabet = false;
+                        console.log(key)
+                        if (!/[^a-zA-Z0-9]/.test(key.value)) {
+                            isAlphabet = true;
+                            number++;
+                        }
 
-                        let className = 'Key ' + (key.status === 'ok' ? 'Active' : '');
+                        let className = 'Key ' + (key.status === 'ok' ? 'Active ' : '') ;
                         return (
                             <div key={index} className="KeyContainer" style={{width:fontSize+15,height:fontSize+15,}}>
 
 
+                                {isAlphabet &&
                                 <div className={className}>
                                     <div className="KeyFront" style={{fontSize}}>{number}</div>
                                     <div className="KeyBack" style={{fontSize}}>{key.key}</div>
                                 </div>
+                                }
+
+                                {!isAlphabet &&
+                                <div className={className}>
+                                    <div className="KeySpace" style={{fontSize}}>{key.key}</div>
+                                </div>
+                                }
 
                             </div>
                         )
@@ -217,9 +230,9 @@ class App extends Component {
                 <div className="InfoContainer">
 
 
-                    <div className="InputContainer">
-                        <div>Aciertos: {this.state.totalOk}</div>
-                        <div>Errores: {this.state.totalError}</div>
+                    <div className="ResultsContainer">
+                        <div className="result"><span className="label">Aciertos:</span> <span className="counter">{this.state.totalOk}</span></div>
+                        <div className="result"><span className="label">Errores:</span> <span className="counter">{this.state.totalError}</span></div>
 
                     </div>
                     <div className="InputContainer">

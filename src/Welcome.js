@@ -44,7 +44,7 @@ export default class Welcome extends Component {
 
                 <div className="WelcomeContainer">
                     <form onSubmit={this.send.bind(this)}>
-                        <textarea ref="phrase" rows={3}></textarea>
+                        <textarea ref="phrase" rows={2} placeholder="Ingresa el texto"></textarea>
 
                         <Checkbox label={'Omitir espacios en blanco'} defaultValue={true} ref="skipSpaces"/>
                         <Checkbox label={'Mostrar caracteres especiales'} defaultValue={true} ref="showSpecials"/>
