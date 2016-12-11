@@ -1,0 +1,129 @@
+.App {
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    /*height: 100vh;*/
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    flex: 1;
+
+}
+
+.WelcomeContainer{
+    justify-content: center;
+    align-self: center;
+}
+
+.SettingsContainer,
+.InputContainer,
+.KeysContainer,
+.WelcomeContainer{
+
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(244, 244, 244, 0.56);
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+
+.KeysContainer{
+    overflow: scroll;
+    max-height: 90vh;
+    overflow-x: hidden;;
+}
+.InfoContainer {
+
+    margin-left: 10px;
+
+}
+
+.InfoContainer input {
+    width: 90px;
+}
+
+.KeysContainer {
+    flex: 1;
+    perspective: 800px;
+    position: relative;
+    align-items: center;
+    display: block;
+    text-align: center;
+    /*border: 10px solid rgba(104, 171, 255, 0.58);*/
+}
+
+.KeyContainer {
+    width: 100px;
+    height: 100px;
+    margin: 4px;
+    float: left;
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.Key {
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.Key > div {
+
+    margin: 0;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 80px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.Key:hover {
+    animation-name: rubberBand;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+
+}
+
+.Key.Active:hover {
+    animation-name: none;
+}
+
+.Key.Active {
+    transform: rotateY(-180deg);
+}
+
+.KeySpace {
+    background: #444;
+
+}
+
+.KeyBack {
+    transform: rotateY(180deg);
+    background: red;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.KeyFront {
+    background: blue;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
