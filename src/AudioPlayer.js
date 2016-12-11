@@ -24,7 +24,7 @@ export default class AudioPlayer {
             id: `background`,
             url: audioBackground,
             autoLoad: true,
-            volume: 10,
+            volume: 5,
             onfinish: () => {
 
             }
@@ -33,7 +33,7 @@ export default class AudioPlayer {
             id: `success`,
             url: audioSuccess,
             autoLoad: true,
-            volume: 100,
+            volume: 20,
             onfinish: () => {
 
             }
@@ -42,7 +42,7 @@ export default class AudioPlayer {
             id: `win`,
             url: audioWin,
             autoLoad: true,
-            volume: 100,
+            volume: 20,
             onfinish: () => {
 
             }
@@ -51,7 +51,7 @@ export default class AudioPlayer {
             id: `fail`,
             url: audioFail,
             autoLoad: true,
-            volume: 100,
+            volume: 10,
             onfinish: () => {
 
             }

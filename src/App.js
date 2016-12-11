@@ -20,7 +20,6 @@ class App extends Component {
     };
 
     componentDidMount() {
-        AudioPlayer.background.play();
     }
 
     focusInput() {

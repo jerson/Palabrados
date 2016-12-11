@@ -4,10 +4,12 @@ import Checkbox from './Checkbox'
 import './Base.css'
 import './App.css'
 import './Animated.css'
+import AudioPlayer from './AudioPlayer'
 
 export default class Welcome extends Component {
 
     componentDidMount() {
+        AudioPlayer.background.play();
         this.focusInput();
 
     }
