@@ -10,7 +10,7 @@ class App extends Component {
 
     state = {
         phrase: '',
-        useSpaces: false,
+        skipSpaces: true,
         showSpecials: true,
         keys: [],
         fontSize: 80,
@@ -62,7 +62,7 @@ class App extends Component {
 
             if (/[^a-zA-Z0-9\s]/.test(value) && settings.showSpecials) {
                 status = 'ok'
-            } else if (/[\s]/.test(value) && !settings.useSpaces) {
+            } else if (value === ' ' && settings.skipSpaces) {
                 status = 'ok'
             }
 
@@ -195,13 +195,18 @@ class App extends Component {
                     {keys.map((key, index) => {
 
                         let isAlphabet = false;
-                        console.log(key)
                         if (!/[^a-zA-Z0-9]/.test(key.value)) {
                             isAlphabet = true;
                             number++;
                         }
 
-                        let className = 'Key ' + (key.status === 'ok' ? 'Active ' : '') ;
+                        if (!this.state.skipSpaces && key.value === ' ') {
+                            number++;
+                        } else if (!this.state.showSpecials && /[^a-zA-Z0-9\s]/.test(key.value)) {
+                            number++;
+                        }
+
+                        let className = 'Key ' + (key.status === 'ok' ? 'Active ' : '');
                         return (
                             <div key={index} className="KeyContainer" style={{width:fontSize+15,height:fontSize+15,}}>
 
@@ -215,6 +220,7 @@ class App extends Component {
 
                                 {!isAlphabet &&
                                 <div className={className}>
+                                    <div className="KeyFront" style={{fontSize}}>{number}</div>
                                     <div className="KeySpace" style={{fontSize}}>{key.key}</div>
                                 </div>
                                 }
@@ -231,8 +237,10 @@ class App extends Component {
 
 
                     <div className="ResultsContainer">
-                        <div className="result"><span className="label">Aciertos:</span> <span className="counter">{this.state.totalOk}</span></div>
-                        <div className="result"><span className="label">Errores:</span> <span className="counter">{this.state.totalError}</span></div>
+                        <div className="result"><span className="label">Aciertos:</span> <span
+                            className="counter">{this.state.totalOk}</span></div>
+                        <div className="result"><span className="label">Errores:</span> <span
+                            className="counter">{this.state.totalError}</span></div>
 
                     </div>
                     <div className="InputContainer">

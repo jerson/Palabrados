@@ -29,7 +29,7 @@ export default class Welcome extends Component {
 
         if (typeof this.props.onNewGame === 'function') {
             this.props.onNewGame(value, {
-                useSpaces: !this.refs.skipSpaces.getValue(),
+                skipSpaces: this.refs.skipSpaces.getValue(),
                 showSpecials: this.refs.showSpecials.getValue()
             })
         }
