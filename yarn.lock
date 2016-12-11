@@ -1354,6 +1354,10 @@ cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
     parse-json "^2.2.0"
     require-from-string "^1.1.0"
 
+createjs@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/createjs/-/createjs-0.0.1.tgz#5542552a7db0194f0ad4285532a96bc71f29788d"
+
 cross-spawn@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-4.0.2.tgz#7b9247621c23adfdd3856004a823cbe397424d41"
@@ -4611,6 +4615,14 @@ sort-keys@^1.0.0:
   resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"
   dependencies:
     is-plain-obj "^1.0.0"
+
+soundjs@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/soundjs/-/soundjs-0.0.0.tgz#3a435d11fbba1e62998a78461bdd4d73b8b2ddda"
+
+soundmanager2@^2.97.20150601-a:
+  version "2.97.20150601-a"
+  resolved "https://registry.yarnpkg.com/soundmanager2/-/soundmanager2-2.97.20150601-a.tgz#d1a2f61bb2cd38f7a7209fbf456de20e5eaef74f"
 
 source-list-map@^0.1.4, source-list-map@~0.1.0, source-list-map@~0.1.7:
   version "0.1.7"

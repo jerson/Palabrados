@@ -4,6 +4,7 @@ import Welcome from './Welcome'
 import './Base.css'
 import './App.css'
 import './Animated.css'
+import AudioPlayer from './AudioPlayer'
 
 class App extends Component {
 
@@ -17,6 +18,10 @@ class App extends Component {
         totalOk: 0,
         totalError: 0,
     };
+
+    componentDidMount() {
+        AudioPlayer.background.play();
+    }
 
     focusInput() {
         this.refs.key && ReactDOM.findDOMNode(this.refs.key).focus();
@@ -130,12 +135,16 @@ class App extends Component {
 
         total++;
         if (isOk) {
+            AudioPlayer.success.play();
             totalOk++;
         } else {
+            AudioPlayer.fail.play();
             totalError++;
         }
         this.setState({keys, total, totalOk, totalError}, () => {
-            this.checkIfAllIsOk();
+            if (isOk) {
+                this.checkIfAllIsOk();
+            }
         });
     }
 
@@ -148,6 +157,7 @@ class App extends Component {
         this.setState({allOk});
 
         if (allOk) {
+            AudioPlayer.win.play();
             ReactDOM.findDOMNode(this.refs.newGame).focus();
         } else {
             this.focusInput();

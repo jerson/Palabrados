@@ -1,0 +1,9 @@
+export default   {
+    app: {
+        name: 'Palabrados',
+        version: 1.0,
+        debug: true,
+        author: 'Gerson'
+    },
+
+};
