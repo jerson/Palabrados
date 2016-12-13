@@ -2,7 +2,7 @@
   "name": "Palabrados",
   "version": "0.1.0",
   "private": true,
-  "main": "main.js",
+  "main": "src/index.js",
   "devDependencies": {
     "electron": "^1.4.12",
     "electron-packager": "^8.4.0",
@@ -14,9 +14,9 @@
     "soundmanager2": "^2.97.20150601-a"
   },
   "scripts": {
-    "electron": "electron .",
-    "build:app:mac": "npm run build && electron-packager ./ Palabrados --out=releases --platform=darwin",
-    "build:app:windows": "npm run build && electron-packager ./ Palabrados --out=releases --platform=win32",
+    "electron": "electron ./build",
+    "build:app:mac": "npm run build && electron-packager ./build Palabrados --out=releases --icon=build/icon.icns --platform=darwin --overwrite",
+    "build:app:windows": "npm run build && electron-packager ./build Palabrados --out=releases --icon=build/favicon.ico --platform=win32 --overwrite",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
