@@ -1,10 +1,10 @@
-import Config from './Config'
+import Config from '../Config'
 import {soundManager} from 'soundmanager2'
 import 'soundmanager2/swf/soundmanager2.swf'
-import audioBackground from './audio/background.mp3'
-import audioFail from './audio/fail.mp3'
-import audioWin from './audio/win.mp3'
-import audioSuccess from './audio/success.mp3'
+import audioBackground from '../assets/background.mp3'
+import audioFail from '../assets/fail.mp3'
+import audioWin from '../assets/win.mp3'
+import audioSuccess from '../assets/success.mp3'
 
 export default class AudioPlayer {
 

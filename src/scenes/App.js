@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Welcome from './Welcome'
-import './Base.css'
 import './App.css'
-import './Animated.css'
-import AudioPlayer from './AudioPlayer'
+import AudioPlayer from '../libs/AudioPlayer'
 
 class App extends Component {
 
@@ -247,7 +245,7 @@ class App extends Component {
                         <form onSubmit={this.send.bind(this)}>
                             <input maxLength="1" ref="key"/>
 
-                            <button type="submit">Enviar</button>
+                            <button type="submit" className="success">Enviar</button>
                         </form>
 
 
@@ -255,8 +253,8 @@ class App extends Component {
 
                     <div className="SizeContainer">
 
-                        <button type="button" onClick={this.bigger.bind(this)}>+</button>
-                        <button type="button" onClick={this.smaller.bind(this)}>-</button>
+                        <button type="button" className="info" onClick={this.bigger.bind(this)}>+</button>
+                        <button type="button" className="info" onClick={this.smaller.bind(this)}>-</button>
 
                     </div>
                     <div className="SettingsContainer">

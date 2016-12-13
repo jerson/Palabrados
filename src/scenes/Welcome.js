@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import Checkbox from './Checkbox'
-import './Base.css'
-import './App.css'
-import './Animated.css'
-import AudioPlayer from './AudioPlayer'
+import Checkbox from '../components/Checkbox'
+import AudioPlayer from '../libs/AudioPlayer'
 
 export default class Welcome extends Component {
 
@@ -49,7 +46,7 @@ export default class Welcome extends Component {
                         <Checkbox label={'Omitir espacios en blanco'} defaultValue={true} ref="skipSpaces"/>
                         <Checkbox label={'Mostrar caracteres especiales'} defaultValue={true} ref="showSpecials"/>
 
-                        <button type="submit">Iniciar Juego</button>
+                        <button className="success" type="submit">Iniciar juego</button>
                     </form>
 
 

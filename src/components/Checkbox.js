@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-import './Base.css'
-import './App.css'
-import './Animated.css'
 
 export default class Checkbox extends Component {
 
