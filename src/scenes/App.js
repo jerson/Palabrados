@@ -206,19 +206,19 @@ class App extends Component {
 
                         let className = 'Key ' + (key.status === 'ok' ? 'Active ' : '');
                         return (
-                            <div key={index} className="KeyContainer" style={{width:fontSize+15,height:fontSize+15,}}>
+                            <div key={index} className="KeyContainer" style={{width:fontSize-10,height:fontSize+10,}}>
 
 
                                 {isAlphabet &&
                                 <div className={className}>
-                                    <div className="KeyFront" style={{fontSize}}>{number}</div>
+                                    <div className="KeyFront" style={{fontSize:fontSize-20}}>{number}</div>
                                     <div className="KeyBack" style={{fontSize}}>{key.key}</div>
                                 </div>
                                 }
 
                                 {!isAlphabet &&
                                 <div className={className}>
-                                    <div className="KeyFront" style={{fontSize}}>{number}</div>
+                                    <div className="KeyFront" style={{fontSize:fontSize-10}}>{number}</div>
                                     <div className="KeySpace" style={{fontSize}}>{key.key}</div>
                                 </div>
                                 }

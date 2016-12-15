@@ -2,5 +2,10 @@
   "name": "Palabrados",
   "version": "1.0.0",
   "private": true,
-  "main": "main.js"
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "width": 800,
+    "height": 580
+  }
 }

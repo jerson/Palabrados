@@ -6,6 +6,7 @@
   "devDependencies": {
     "electron": "^1.4.12",
     "electron-packager": "^8.4.0",
+    "nw-builder": "^3.1.2",
     "react-scripts": "0.8.4"
   },
   "dependencies": {
@@ -15,8 +16,7 @@
   },
   "scripts": {
     "electron": "electron ./build",
-    "build:app:mac": "npm run build && electron-packager ./build Palabrados --out=releases --icon=build/icon.icns --platform=darwin --overwrite",
-    "build:app:windows": "npm run build && electron-packager ./build Palabrados --out=releases --icon=build/favicon.ico --platform=win32 --overwrite",
+    "build:app": "npm run build && node build.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

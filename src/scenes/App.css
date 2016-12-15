@@ -85,14 +85,20 @@
 }
 
 .KeyContainer {
-    width: 100px;
-    height: 100px;
-    margin: 2px;
+    /*width: 100px;*/
+    /*height: 100px;*/
+    /*margin: 2px;*/
     float: left;
     display: inline-flex;
     cursor: pointer;
     position: relative;
     transition: transform .2s ease-in-out;
+
+
+    text-transform: uppercase;
+    width: 60px;
+    height: 96px;
+    margin: 6px 2px;
 
 }
 
@@ -136,7 +142,6 @@
     border-radius: 8px;
     font-size: 80px;
     font-weight: bold;
-    /*text-transform: uppercase;*/
 
     white-space: nowrap;
     overflow: hidden;
